@@ -1,0 +1,44 @@
+--James Watson
+--Grep Assignment
+--2/11/2019
+
+--Starts with capital Z
+#1 egrep '^Z' cities.txt
+
+--ends with gan
+#2 egrep 'gan$' cities.txt
+
+--Starts with A, D, or E
+#3 egrep '^A|^D|^E' cities.txt
+
+	---or---
+
+#3 egrep '^[ADE]' cities.txt
+
+--A word that has a in the scond position and r in the third.
+#4 egrep '\<.ar' cities.txt
+
+--A city that doesn't start with C
+#5 egrep -v '^C' cities.txt
+
+--This grep command prints all characters that don't have a space in them,
+--that are 14 or more characters. 
+#6 egrep '[^[:space:]]{14,}' cities.txt
+
+--The -c counts the output
+#7 egrep -c '^B' cities.txt
+
+--The -o shows only the d characters on their own line.
+--This allows me to pipe it to wc -l.
+#8 egrep -o 'd' cities.txt | wc-l
+
+--This command uses the () to remember the character. Then we can use \1 to repe--at that character. 
+#9 egrep '(.)\1$' cities.txt
+
+--This command uses the memory from the first two characters and repeats them as the last two character. Then we just put a period in the middle to find any 1 random character. 
+#10 egrep -i '^(.)(.).\2\1$' cities.txt
+
+##Bonus, I use a script to find any length palindrome and print it out.
+--The script works by reading line by line and putting each word backward into
+a string. Then it compares the strings to see if they match.
+./Palindrome < cities.txt
